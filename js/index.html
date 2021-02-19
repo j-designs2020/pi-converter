@@ -1,0 +1,382 @@
+<html>
+<head>
+
+
+<style type="text/css">
+
+fieldset
+{
+border:none
+}
+
+table
+{
+font: 14px Arial;
+background-color: #89b2e1;
+width: 600px;
+}
+
+.one
+{
+background-color: #89b2e1;
+}
+
+a:link {
+color:green;
+
+}
+
+a:visited{
+color:#c2c2c2;
+}
+
+
+.div2{
+width:500px;
+}
+</style>
+
+
+<script>
+
+
+
+ 
+function convert(number){
+	var pi = 3.14159265;
+	var piMinus = -3.14159265;
+	var entry = 0;
+	var result = 0;
+	var result2 = 0;
+	var rangeUp = .0005;
+	var rangeDown = -.0005;
+	var i = 0;
+	var j = 2;
+	var foundFlag = false;
+//	var number = Number.parseFloat(number);
+	result = number/pi;
+	result2 = number*pi;
+	result3 = number/piMinus;
+	result4 = number*piMinus;
+
+	if (number >= rangeDown && number <= rangeUp){
+			document.getElementById("one").innerHTML = "Your number cannot be expressed efficiently in terms of " + "<img src='images/pi.png'>." ;
+			foundFlag = true;
+			i=1000;
+		}
+	
+	
+	while(j<1000){
+		
+		if ( (result <= (j+rangeUp)) &&  (result  >= (j-rangeUp )) ){
+				document.getElementById("one").innerHTML = "Your answer is: " + j + " <img src='images/pi.png'>"
+				i=1000;
+				j=1000;
+				
+			}
+		else if ( (result3 <= (j+rangeUp)) &&  (result3  >= (j-rangeUp )) ){
+				document.getElementById("one").innerHTML = "Your answer is: -" + j + " <img src='images/pi.png'>"
+				i=1000;
+				j=1000;
+				
+			}
+			
+			j++;
+	}
+
+	while (i<1000){
+		
+		
+	//	document.write(result3);
+
+
+
+		if (number >= 0){
+			//if (((Math.round((number*i)/pi)-((number*i)/pi)) <= rangeUp) && ((Math.round((number*i)/pi)-((number*i)/pi)) >= rangeDown)){			
+			//		document.getElementById("one").innerHTML = "Your answer is: " + Math.round((result*i)/pi) + " / " + i + "<img src='images/pi.png'>" ;
+			//		foundFlag=true;	
+			//		i=1000;	
+										
+			//}	
+
+
+			if ((number >= 3.141) && (number <= 3.142)){
+			
+				document.getElementById("one").innerHTML =  "Your answer is " + " <img src='images/pi.png'>";
+				foundFlag=true;	
+				i=1000;
+			}		
+
+			if (((number*i) >= 3.141) && ((number*i) <= 3.142)){
+					document.getElementById("one").innerHTML =  "Your answer is: " + "<img src='images/pi.png'> / " + i ; 
+					foundFlag=true;	
+					i=1000;
+			}
+
+
+
+			
+			if (((Math.round(result*i)-(result*i)) <= rangeUp) && ((Math.round(result*i)-(result*i)) >= rangeDown)){			
+				if ((Math.round(result*i) > 1) && (i > 1) && number > 1.57){
+					document.getElementById("one").innerHTML = "Your answer is: " + Math.round(result*i) + "<img src='images/pi.png'> / " + i;
+					foundFlag=true;	
+					i=1000;
+				}
+				if ((Math.round(result*i) > 1) && (i > 1) && number < 1.57){
+					document.getElementById("one").innerHTML = "Your answer is: " + Math.round(result*i) + "<img src='images/pi.png'> / " + i;
+					foundFlag=true;	
+					i=1000;
+				}						
+			}		
+			if ( ((result2 - Math.round(result2)) <= rangeUp) &&  ((result2 - Math.round(result2)) >= rangeDown )){
+				document.getElementById("one").innerHTML = "Your answer is: " + Math.round(result2) + " / <img src='images/pi.png'>";
+				foundFlag=true;	
+				i=1000;
+			}
+			
+
+		}
+		
+		if (number < 0) {
+			if ((number <= -3.141) && (number >= -3.142)){
+				document.getElementById("one").innerHTML =  "Your answer is -" + " <img src='images/pi.png'>";
+				foundFlag=true;	
+				i=1000;
+			}
+			
+			if (((number*i) <= -3.141) && ((number*i) >= -3.142)){
+				document.getElementById("one").innerHTML =  "Your answer is: -" + "<img src='images/pi.png'> / " + i ; 
+				foundFlag=true;	
+				i=1000;
+			}
+			
+			if ((((Math.round(result3*i)-(result3*i)) <= rangeUp) && ((Math.round(result3*i)-(result3*i)) >= rangeDown)) ){			
+				if ((Math.round(result3*i) > 1) && (i > 1) && number < -1.57){
+					document.getElementById("one").innerHTML = "Your answer is: -" + Math.round(result3*i) + "<img src='images/pi.png'> / " + i;
+					foundFlag=true;	
+					i=1000;
+				}	
+				if ((Math.round(result*i) > 1) && (i > 1) && number < 1.57){
+					document.getElementById("one").innerHTML = "Your answer is: " + Math.round(result*i) + "<img src='images/pi.png'> / " + i;
+					foundFlag=true;	
+					i=1000;
+				}
+			
+			}
+			if ( ((result4 - Math.round(result4)) <= rangeUp) &&  ((result4 - Math.round(result4)) >= rangeDown ) && number < -1){
+				document.getElementById("one").innerHTML = "Your answer is: " + Math.round(result4) + " / <img src='images/pi.png'>";
+				foundFlag=true;	
+				i=1000;
+			}
+			
+
+		
+		}
+		
+		i++; 
+	}
+
+				if (i==1000 && foundFlag==false){
+					document.getElementById("one").innerHTML = "Your number cannot be expressed efficiently in terms of " + "<img src='images/pi.png'>." ;
+			}
+}
+
+function getNum(form)
+{
+
+	var number = 0;
+	number = form.number.value ; 
+
+	//document.write(number);
+	validateForm();
+
+
+
+}
+
+
+
+
+
+function validateForm()
+{
+
+
+
+
+	var rc=true
+	
+	var sValue = document.getElementById("number").value;
+	//var pattern2 = /^\d{5}([\-]\d{4})?$/;
+	var pattern2 = /^[-][0-9\.\ ]+$/; 
+	var pattern = /^[0-9\.\ ]+$/;
+	if (pattern.test(sValue)) {
+	}
+	else if (sValue < 0 && pattern2.test(sValue))
+	{
+	}
+	else
+	{
+		alert("Please enter numbers only.");
+		rc = false;
+	}
+
+
+	if (document.form.number.value=="0")
+	{
+	alert("Please enter a number greater than zero.")
+	rc=false
+	}
+
+
+
+	if (rc) {
+		var number = document.form.number.value; 
+		convert(number);	
+		
+		//document.write(number);
+	}
+	
+	
+	
+	return rc;
+				
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+</script>
+<title>IN TERMS OF PI CONVERTER</title>
+</head>
+
+<br>
+<br>
+<center>
+<table width="600">
+<tr>
+<td>
+<img src="images/1.png" height="80">
+</td>
+<td>
+<img src="images/2.png" height="80" align="right">
+</td>
+</tr>
+<td>
+<br>
+<br>
+
+
+<center>
+
+
+<h3><u><b><p align="left"><img src="images/okspacer.png" width="20">IN TERMS OF PI CONVERTER</u><br><img src="images/okspacer.png" width="17"> </b>
+<br>
+<br>
+<h5><p align="left"><img src="images/okspacer.png" width="20">Translates a number into exact pi form.</i></b>
+<br> <br>
+<p align="left"><img src="images/okspacer.png" width="20">Displays most reduced version. </b>
+<br> <br> <br>
+<i><h5><p align="left"><img src="images/okspacer.png" width="20">Input your number as exact as <br> <p align="left"><img src="images/okspacer.png" width="20">possible with up to five decimals.<br>
+
+<br>
+<br><br>
+<br>
+<br>
+<br>
+
+
+<font size="2"><img src="images/okspacer.png" width="20"> Created by <a href="http://jaydesigns2020.wixsite.com/jdesigns" target="_blank">j.designs</a>, 2020.</font>
+</td>
+
+
+<td>
+<form name="form" method="post" action="javascript://" onsubmit="return getNum(this);">
+<fieldset> <font size="2">
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<br><br>
+
+<label> <img src="images/okspacer.png" width="11"> Enter a number <br></label><span> <input type="text" name="number" value="" id="number" size="12" maxlength="10"></span>   <br> <br> <br> <br>
+
+
+
+
+
+
+
+
+
+<img src="images/okspacer.png" width="35">
+
+<input type="image" src="images/ok.png" width="35" value="OK"> </center> </span>  <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br></tr> </td>
+</p>
+
+</fieldset> 
+</form>
+</tr>
+</table>
+
+<!----------------------------------END FORM----------------------------------------------->
+
+<table class="table2">
+<tr> <td> <center>
+
+<br>
+
+<div class="one">
+
+<div id="one"><font color="89b2e1"><script>document.write("pi converter");</script></font></div>
+<div id="two"></div>
+
+</div>
+
+
+
+<br>
+<br>
+<br>
+<br>
+
+</table>
+
+
+</center>
+
+
+
+</center>
+</body>
+</html>
